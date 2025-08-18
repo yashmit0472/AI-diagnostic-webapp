@@ -246,7 +246,7 @@ if __name__ == '__main__':
     
     if load_model_and_data():
         logger.info("Starting Flask server...")
-        app.run(debug=True, host='0.0.0.0', port=5000)
+        app.run(debug=True, host='0.0.0.0', port=5001)
     else:
         logger.error("Failed to load model. Exiting...")
         exit(1)

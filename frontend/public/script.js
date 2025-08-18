@@ -1,6 +1,6 @@
 // Global variables
 let selectedSymptoms = [];
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'http://localhost:5001';
 
 // DOM elements
 const symptomInput = document.getElementById('symptom-input');
