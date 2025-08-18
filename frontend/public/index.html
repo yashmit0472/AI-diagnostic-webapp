@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Diagnostic Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>AI MedAssist</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-container">
+                    <h1 class="hero-title">AI Medical Diagnostic Assistant</h1>
+                    <p class="hero-subtitle">Get instant medical insights powered by artificial intelligence</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">489</span>
+                            <span class="stat-label">Symptoms</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">40+</span>
+                            <span class="stat-label">Diseases</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">AI</span>
+                            <span class="stat-label">Powered</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diagnostic Form -->
+            <section class="diagnostic-section">
+                <div class="container">
+                    <div class="diagnostic-card">
+                        <h2 class="section-title">
+                            <i class="fas fa-user-md"></i>
+                            Symptom Analysis
+                        </h2>
+                        
+                        <!-- Patient Information -->
+                        <div class="patient-info">
+                            <h3>Patient Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" value="25" min="1" max="120">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Weight (kg)</label>
+                                    <input type="number" id="weight" value="70" min="30" max="200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Symptom Input -->
+                        <div class="symptom-input-section">
+                            <h3>Describe Your Symptoms</h3>
+                            <div class="symptom-input-container">
+                                <input 
+                                    type="text" 
+                                    id="symptom-input" 
+                                    placeholder="Type symptoms (e.g., fever, headache, muscle ache)"
+                                    class="symptom-input"
+                                >
+                                <button class="add-symptom-btn" onclick="addSymptom()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Selected Symptoms -->
+                            <div class="selected-symptoms" id="selected-symptoms">
+                                <!-- Dynamic symptoms will be added here -->
+                            </div>
+
+                            <!-- Quick Symptom Categories -->
+                            <div class="symptom-categories">
+                                <h4>Quick Add Common Symptoms:</h4>
+                                <div class="category-buttons">
+                                    <button class="category-btn" onclick="addQuickSymptom('fever')">Fever</button>
+                                    <button class="category-btn" onclick="addQuickSymptom('headache')">Headache</button>
+                                    <button class="category-btn" onclick="addQuickSymptom('cough')">Cough</button>
+                                    <button class="category-btn" onclick="addQuickSymptom('nausea')">Nausea</button>
+                                    <button class="category-btn" onclick="addQuickSymptom('fatigue')">Fatigue</button>
+                                    <button class="category-btn" onclick="addQuickSymptom('dizziness')">Dizziness</button>
+                                </div>
+                            </div>
+
+                            <!-- Analyze Button -->
+                            <button class="analyze-btn" onclick="analyzeSymptoms()">
+                                <i class="fas fa-search"></i>
+                                Analyze Symptoms
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="results-section" style="display: none;">
+                <div class="container">
+                    <div class="results-card">
+                        <h2 class="section-title">
+                            <i class="fas fa-chart-line"></i>
+                            Analysis Results
+                        </h2>
+                        <div id="results-content">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Analyzing symptoms...</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 AI Medical Diagnostic Assistant. This tool is for educational purposes only and should not replace professional medical advice.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

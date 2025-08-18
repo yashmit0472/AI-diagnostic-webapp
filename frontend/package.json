@@ -1,0 +1,19 @@
+{
+  "name": "ai-diagnostic-frontend",
+  "version": "1.0.0",
+  "description": "AI Medical Diagnostic Assistant Frontend",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "dev": "python3 -m http.server 8080",
+    "build": "echo 'Static files ready for deployment'",
+    "deploy": "echo 'Deploy to your preferred hosting platform'"
+  },
+  "keywords": ["ai", "medical", "diagnostic", "healthcare", "machine-learning"],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-diagnostic-webapp.git"
+  }
+}
