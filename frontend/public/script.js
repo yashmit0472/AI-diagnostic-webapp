@@ -1,6 +1,7 @@
 // Global variables
 let selectedSymptoms = [];
-const API_BASE_URL = 'http://localhost:5001';
+// Use relative URL in production, localhost in development
+const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:5001' : '';
 
 // DOM elements
 const symptomInput = document.getElementById('symptom-input');
@@ -12,6 +13,7 @@ const loadingOverlay = document.getElementById('loading-overlay');
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
     setupEventListeners();
+    setupNavigation();
 });
 
 function initializeApp() {
@@ -338,6 +340,73 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.remove();
     }, 5000);
+}
+
+// Navigation functionality
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = {
+        'home': ['.hero-section', '.diagnostic-section', '.results-section'],
+        'about': ['#about'],
+        'contact': ['#contact']
+    };
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('href').substring(1);
+            
+            // Update active nav link
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Hide all sections
+            Object.values(sections).flat().forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => el.style.display = 'none');
+            });
+            
+            // Show target sections
+            if (sections[target]) {
+                sections[target].forEach(selector => {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(el => el.style.display = 'block');
+                });
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+    
+    // Setup contact form
+    const contactForm = document.querySelector('.message-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactForm);
+    }
+}
+
+function handleContactForm(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const message = document.getElementById('contact-message').value;
+    
+    // Create mailto link
+    const subject = encodeURIComponent(`Message from ${name} via AI MedAssist`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    const mailtoLink = `mailto:jangirshlok@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Clear form
+    document.getElementById('contact-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-message').value = '';
+    
+    showNotification('Email client opened! Your message is ready to send.', 'success');
 }
 
 // Add animation for notifications

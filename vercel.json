@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "name": "ai-diagnostic-webapp",
   "builds": [
     {
-      "src": "backend/app.py",
-      "use": "@vercel/python"
+      "src": "frontend/public/index.html",
+      "use": "@vercel/static"
     },
     {
       "src": "frontend/public/**",
@@ -13,19 +12,16 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/backend/app.py"
-    },
-    {
-      "src": "/(.*)",
+      "src": "/(.*\\.(css|js|ico|png|jpg|jpeg|gif|svg))",
       "dest": "/frontend/public/$1"
     },
     {
       "src": "/",
       "dest": "/frontend/public/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/public/index.html"
     }
-  ],
-  "env": {
-    "PYTHONPATH": "backend"
-  }
+  ]
 }
