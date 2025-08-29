@@ -33,3 +33,5 @@ Write-Host "Press Ctrl+C to stop all servers"
 while ($true) {
     Start-Sleep -Seconds 1
 }
+
+#run in windows
